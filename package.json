@@ -1,0 +1,24 @@
+{
+  "name": "burger-devourer",
+  "version": "1.0.0",
+  "description": "## Description An app hosted on heroku that utilizes mysql, express, and handlebars to store burgers input by the user. Each burger also has a devour button for the use to denote when a burger has been eaten. Finally, the app tracks all burgers regardless of whether they've been eaten or not.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oxfordblucher/Burger-Devourer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oxfordblucher/Burger-Devourer/issues"
+  },
+  "dependencies": {
+    "express": "4.17.1",
+    "express-handlebars": "5.2.0",
+    "mysql": "2.18.1",
+    "dotenv": "8.2.0"
+  }
+}
