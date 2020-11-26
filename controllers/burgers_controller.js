@@ -14,20 +14,18 @@ router.get("/", function(req, res) {
 });
 
 router.post("/api/burgers", function(req, res) {
-    burger.insertOne("burger_name", req.body.name, function(res) {
-        console.log(req.body.name);
-        res.json({id: res.insertId});
+    burger.insertOne("burger_name", req.body.name, function(result) {
+        res.json({id: result.insertId});
     });
 });
 
 router.put("/api/burgers/:id", function(req, res) {
     const condition = `id = ${req.params.id}`;
-    console.log("condition:", condition);
 
     burger.updateOne({
-        devoured: true
-    }, condition, function(res) {
-        if(res.changedRows == 0) {
+        devoured: 1
+    }, condition, function(result) {
+        if(result.changedRows == 0) {
             return res.status(404).end();
         }else {
             res.status(200).end();

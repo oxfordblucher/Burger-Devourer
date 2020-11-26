@@ -33,19 +33,17 @@ const orm = {
     },
 
     insertOne: function(table, col, name, cb) {
-        const queryString = `INSERT INTO ?? SET ??`;
-        connection.query(queryString, (table, col, name), function(err, res) {
+        const queryString = `INSERT INTO ${table} (${col.toString()}) VALUES (?)`;
+        connection.query(queryString, name, function(err, res) {
             if(err) throw err;
-            console.log(queryString);
             cb(res);
         })
     },
 
     updateOne: function(table, burgVals, condition, cb) {
-        const queryString = `UPDATE ?? SET ?? WHERE ?`;
-        connection.query(queryString, [table, burgVals, condition], function(err, res) {
+        const queryString = `UPDATE ${table} SET ${objToSql(burgVals)} WHERE ${condition}`;
+        connection.query(queryString, function(err, res) {
             if(err) throw err;
-            console.log(queryString);
             cb(res);
         })
     }

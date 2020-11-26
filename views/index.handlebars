@@ -1,29 +1,29 @@
 <h1>Burgers!</h1>
 
 <h2>To Be Devoured!</h2>
-<ul>
+<ol>
   {{#each burgers}}
     {{#unless devoured}}
       {{> burgers/burgers-to-eat}}
     {{/unless}}
   {{/each}}
-</ul>
+</ol>
 
 <h2>Devoured List!</h2>
-<ul>
+<ol>
   {{#each burgers}}
     {{#if devoured}}
       {{> burgers/burger-block}}
     {{/if}}
   {{/each}}
-</ul>
+</ol>
 
 <h2>Full List</h2>
-<ul>
+<ol>
     {{#each burgers}}
         {{> burgers/burger-block}}
     {{/each}}
-</ul>
+</ol>
 
 <h2>Cook up a burger!</h2>
 <form class="create-form">
