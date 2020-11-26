@@ -1,1 +1,1 @@
-INSERT INTO menu (burger_name) VALUES ('Swiss/Gruyere, carmelized onion, mushroom -MR'), ('A1, grilled onion, double stack -MW'), ('Vermont sharp, blt -MD');
+INSERT INTO burgers (burger_name) VALUES ('Swiss/Gruyere, carmelized onion, mushroom -MR'), ('A1, grilled onion, double stack -MW'), ('Vermont sharp, blt -MD');

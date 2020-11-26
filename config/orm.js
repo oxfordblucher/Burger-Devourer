@@ -1,20 +1,53 @@
 const connection = require("../config/connection.js");
 
+// Helper function to convert object key/value pairs to SQL syntax
+function objToSql(ob) {
+    var arr = [];
+  
+    // loop through the keys and push the key/value as a string int arr
+    for (var key in ob) {
+      var value = ob[key];
+      // check to skip hidden properties
+      if (Object.hasOwnProperty.call(ob, key)) {
+        // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
+        if (typeof value === "string" && value.indexOf(" ") >= 0) {
+          value = "'" + value + "'";
+        }
+        // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
+        // e.g. {sleepy: true} => ["sleepy=true"]
+        arr.push(key + "=" + value);
+      }
+    }
+  
+    // translate array of strings to a single comma-separated string
+    return arr.toString();
+}
+
 const orm = {
-    selectAll: function() {
-        const queryString = "SELECT * FROM ??";
+    selectAll: function(tableInput, cb) {
+        const queryString = `SELECT * FROM ??`;
         connection.query(queryString, [tableInput], function(err, res) {
             if(err) throw err;
-            console.log(res);
+            cb(res);
         })
     },
 
-    insertOne: function() {
-        const queryString = "INSERT SET ?? WHERE ??"
+    insertOne: function(table, col, name, cb) {
+        const queryString = `INSERT INTO ?? SET ??`;
+        connection.query(queryString, (table, col, name), function(err, res) {
+            if(err) throw err;
+            console.log(queryString);
+            cb(res);
+        })
     },
 
-    updateOne: function() {
-
+    updateOne: function(table, burgVals, condition, cb) {
+        const queryString = `UPDATE ?? SET ?? WHERE ?`;
+        connection.query(queryString, [table, burgVals, condition], function(err, res) {
+            if(err) throw err;
+            console.log(queryString);
+            cb(res);
+        })
     }
 }
 
